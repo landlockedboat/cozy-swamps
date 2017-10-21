@@ -50,6 +50,16 @@ bot.onText(/kidnap (.+)/, (msg, match) => {
   }
 
   var ammount = parseInt(match[1]);
+
+  if(ammount < 0)
+  {
+    bot.sendMessage(
+      msg.chat.id,
+      'U cannot kidnap negative people dumbass'
+    );
+    return;
+  }
+
   if(world.kidnap(player, player.cell.village, ammount))
   {
     bot.sendMessage(
