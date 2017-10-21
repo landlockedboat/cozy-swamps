@@ -1,3 +1,4 @@
+
 {
   "name": "bot",
   "version": "1.0.0",
@@ -5,8 +6,8 @@
   "main": "src/index.js",
   "scripts": {
     "build": "node tools/generate.overworld.js 10 10 > data/overworld.data",
-    "test": "./node_modules/.bin/eslint src/**.js tools/**.js",
-    "autofix": "./node_modules/.bin/eslint --fix src/**.js tools/**.js",
+    "test": "./node_modules/.bin/eslint src/ tools/",
+    "autofix": "./node_modules/.bin/eslint --fix src/ tools/",
     "start": "npm run test && node src/index.js",
     "debug": "node src/index.js"
   },

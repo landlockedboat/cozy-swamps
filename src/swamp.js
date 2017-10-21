@@ -1,9 +1,7 @@
-var swamp = {};
+var World = require('./swamp/world.js');
 
-swamp.overworld = require("./swamp.overworld.js");
-swamp.users = require("./swamp.users.js");
+function Swamp (){
+  this.world = new World();
+}
 
-swamp.users.overworld = swamp.overworld;
-swamp.overworld.users = swamp.users;
-
-module.exports = swamp;
+module.exports = Swamp;
