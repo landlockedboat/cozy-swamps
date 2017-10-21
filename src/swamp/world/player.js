@@ -14,6 +14,18 @@ function playerMove(dir)
   {
     return tryMove(this, this.cell, this.cell.cellLeft);
   }
+  if(dir === 'east')
+  {
+    return tryMove(this, this.cell, this.cell.cellRight);
+  }
+  if(dir === 'north')
+  {
+    return tryMove(this, this.cell, this.cell.cellTop);
+  }
+  if(dir === 'south')
+  {
+    return tryMove(this, this.cell, this.cell.cellBot);
+  }
 }
 
 function tryMove(player, source, destination)
@@ -21,6 +33,7 @@ function tryMove(player, source, destination)
   if(destination && destination.getWalkable())
   {
     destination.players[player.name] = player;
+    player.cell = destination;
     delete source.players[player.name];
     return true;
   }
