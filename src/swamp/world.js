@@ -46,18 +46,18 @@ function generateMap()
         break;
       }
 
-      var cellTop;
+      var cellNorth;
       if(i > 0)
       {
-        cellTop = ret[i - 1][j];
+        cellNorth = ret[i - 1][j];
       }
-      var cellLeft;
+      var cellWest;
       if(j > 0)
       {
-        cellLeft = ret[i][j - 1];
+        cellWest = ret[i][j - 1];
       }
 
-      var cell = new Cell(cellTop, cellLeft);
+      var cell = new Cell(cellNorth, cellWest);
       ret[i][j] = cell;
       ret[i][j].tile = new Tile(cell, type);
       if(type === 'village')

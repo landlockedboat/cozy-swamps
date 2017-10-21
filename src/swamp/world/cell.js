@@ -1,15 +1,15 @@
-module.exports = function Cell(cellTop, cellLeft)
+module.exports = function Cell(cellNorth, cellWest)
 {
-  if(cellTop)
+  if(cellNorth)
   {
-    this.cellTop = cellTop;
-    cellTop.cellBot = this;
+    this.cellNorth = cellNorth;
+    cellNorth.cellSouth = this;
   }
 
-  if(cellLeft)
+  if(cellWest)
   {
-    this.cellLeft = cellLeft;
-    cellLeft.cellRight = this;
+    this.cellWest = cellWest;
+    cellWest.cellEast = this;
   }
 
   this.getWalkable = cellGetWalkable;

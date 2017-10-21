@@ -12,19 +12,19 @@ function playerMove(dir)
 {
   if(dir === 'west')
   {
-    return tryMove(this, this.cell, this.cell.cellLeft);
+    return tryMove(this, this.cell, this.cell.cellWest);
   }
   if(dir === 'east')
   {
-    return tryMove(this, this.cell, this.cell.cellRight);
+    return tryMove(this, this.cell, this.cell.cellEast);
   }
   if(dir === 'north')
   {
-    return tryMove(this, this.cell, this.cell.cellTop);
+    return tryMove(this, this.cell, this.cell.cellNorth);
   }
   if(dir === 'south')
   {
-    return tryMove(this, this.cell, this.cell.cellBot);
+    return tryMove(this, this.cell, this.cell.cellSouth);
   }
 }
 
