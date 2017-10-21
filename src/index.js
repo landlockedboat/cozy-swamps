@@ -5,8 +5,10 @@ const token = secrets.token;
 const bot = new TelegramSouth(token, {polling: true});
 
 var swamp = new Swamp();
+var world = swamp.world;
 
-swamp.world.addPlayer(3, 3, 'wextia', 'calcium boi');
+world.addPlayer(3, 3, 'wextia', 'calcium boi');
+world.addPlayer(3, 3, 'bones', 'calcium boi');
 
 bot.on('message', (msg) => {
   console.log(
@@ -16,29 +18,39 @@ bot.on('message', (msg) => {
 });
 
 bot.onText(/move (.+)/, (msg, match) => {
-  swamp.world.players[msg.from.username].move(match[1]);
+  var player = world.players[msg.from.username];
+  player.move(match[1]);
+  var y = player.cell.y;
+  var x = player.cell.x;
 
   bot.sendMessage(
     msg.chat.id,
-    // eslint-disable-next-line no-useless-escape
-    // "send \/start to login"
-    swamp.world.printSurroundings(3,3,5)
+    world.printSurroundings(y, x, 5)
+  );
+});
+
+bot.onText(/look/, (msg) => {
+  var cell = world.players[msg.from.username].cell;
+
+  bot.sendMessage(
+    msg.chat.id,
+    cell.getInfo(msg.from.username)
   );
 });
 
 bot.onText(/\/start/, (msg) => {
   var chatId = msg.chat.id;
 
-  if(!swamp.world.players[msg.from.username])
+  if(!world.players[msg.from.username])
   {
-    swamp.world.addPlayer(3, 3, msg.from.username, 'calcium boi');
+    world.addPlayer(3, 3, msg.from.username, 'calcium boi');
   }
 
   bot.sendMessage(
     chatId,
     // eslint-disable-next-line no-useless-escape
     // "send \/start to login"
-    swamp.world.printSurroundings(3,3,5)
+    world.printSurroundings(3,3,5)
   );
 
 });

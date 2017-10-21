@@ -57,7 +57,7 @@ function generateMap()
         cellWest = ret[i][j - 1];
       }
 
-      var cell = new Cell(cellNorth, cellWest);
+      var cell = new Cell(i, j, cellNorth, cellWest);
       ret[i][j] = cell;
       ret[i][j].tile = new Tile(cell, type);
       if(type === 'village')
@@ -69,7 +69,7 @@ function generateMap()
   return ret;
 }
 
-function worldPrintSurroundings (x, y, radius)
+function worldPrintSurroundings (y, x, radius)
 {
   var ret = '';
   for(var i = y - radius; i < y + radius; i++)
