@@ -16,23 +16,24 @@ module.exports = function Lair(cell, name, owner)
     return ret;
   };
   this.emoji = generateEmoji(owner.race);
+  owner.lair = this;
 };
 
 function generateEmoji(race)
 {
-  if(this.race === 'h*cky spooker')
+  if(race === 'h*cky spooker')
   {
     return '🏰';
   }
-  else if(race == 'laugh buddy')
+  else if(race === 'laugh buddy')
   {
     return '🎪';
   }
-  else if(race == 'inky pupper')
+  else if(race === 'inky pupper')
   {
     return '🌊';
   }
-  else if(race == 'calcium boi')
+  else if(race === 'calcium boi')
   {
     return '⚰';
   }

@@ -103,12 +103,7 @@ function worldPrintSurroundings (y, x, radius)
         ret += '🌫';
         continue;
       }
-      // TODO ERASE
       var cell = this.map[i][j];
-      //      if (i === 3 && j === 3)
-      //      {
-      //        console.log(cell.players);
-      //      }
       ret += cell.getEmoji();
     }
     ret += '\n';
