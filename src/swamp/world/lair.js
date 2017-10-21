@@ -1,10 +1,9 @@
-module.exports = function Lair(name, x, y, owner)
+module.exports = function Lair(cell, name, owner)
 {
   this.owner = owner;
   this.race = owner.race;
   this.name = name;
-  this.x = x;
-  this.y = y;
+  this.cell = cell;
   this.villagers = 0;
 
   this.getInfo = function ()
@@ -12,8 +11,33 @@ module.exports = function Lair(name, x, y, owner)
     var ret = '';
     ret += name + '\n';
     ret += 'Property of: ' + owner.name + '\n';
-    ret += 'Positon: ' + this.x + ', ' + this.y + '\n';
     ret += 'Race: ' + this.race + '\n';
+    ret += 'Population: ' + this.villagers + '\n';
     return ret;
   };
+  this.emoji = generateEmoji(owner.race);
 };
+
+function generateEmoji(race)
+{
+  if(this.race === 'h*cky spooker')
+  {
+    return '🏰';
+  }
+  else if(race == 'laugh buddy')
+  {
+    return '🎪';
+  }
+  else if(race == 'inky pupper')
+  {
+    return '🌊';
+  }
+  else if(race == 'calcium boi')
+  {
+    return '⚰';
+  }
+  else
+  {
+    return '🚫';
+  }
+}

@@ -29,12 +29,70 @@ bot.onText(/move (.+)/, (msg, match) => {
   );
 });
 
-bot.onText(/look/, (msg) => {
+bot.onText(/\/me/, (msg) => {
+  var player = world.players[msg.from.username];
+  bot.sendMessage(
+    msg.chat.id,
+    player.getInfo()
+  );
+});
+
+bot.onText(/kidnap (.+)/, (msg, match) => {
+  var player = world.players[msg.from.username];
+
+  if(!player.cell.village)
+  {
+    bot.sendMessage(
+      msg.chat.id,
+      'There is no village here dude'      
+    );
+    return;
+  }
+
+  var ammount = parseInt(match[1]);
+  if(world.kidnap(player, player.cell.village, ammount))
+  {
+    bot.sendMessage(
+      msg.chat.id,
+      'U kidnapped ' + ammount + ' bois'
+    );
+    return;
+  }
+  bot.sendMessage(
+    msg.chat.id,
+    'NOt enough bois in village!!'
+  );
+});
+
+bot.onText(/\/look/, (msg) => {
   var cell = world.players[msg.from.username].cell;
 
   bot.sendMessage(
     msg.chat.id,
     cell.getInfo(msg.from.username)
+  );
+});
+
+bot.onText(/build lair/, (msg) => {
+  var player = world.players[msg.from.username];
+  if(world.addLair(player.cell, player.name + '\'s lair', player))
+  {
+    bot.sendMessage(
+      msg.chat.id,
+      'Your lair has been built...'
+    );
+  }
+  else
+  {
+    bot.sendMessage(
+      msg.chat.id,
+      'You cannot build a lair here!'
+    );
+  }
+
+  bot.sendMessage(
+    msg.chat.id,
+    player.cell.getInfo(msg.from.username)
   );
 });
 

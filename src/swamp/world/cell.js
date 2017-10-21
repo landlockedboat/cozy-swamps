@@ -32,6 +32,11 @@ function cellGetInfo(playername)
     ret += 'Village:\n';
     ret += '  Population: ' + this.village.villagers + '\n';
   }
+  if(this.lair)
+  {
+    ret += this.lair.name + '\n';
+    ret += '  Population: ' + this.lair.villagers + '\n';
+  }
   if(this.players)
   {
     var keys = Object.keys(this.players);
@@ -65,6 +70,11 @@ function cellGetWalkable()
 
 function cellGetEmoji()
 {
+  if(this.lair)
+  {
+    return this.lair.emoji;
+  }
+
   if(this.players)
   {
     var keys = Object.keys(this.players);

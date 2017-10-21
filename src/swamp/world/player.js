@@ -6,6 +6,15 @@ module.exports = function Player(cell, name, race)
   this.race = race;
   this.emoji = generateEmoji(race);
   this.move = playerMove;
+  this.kidnapped = 0;
+  this.getInfo = function ()
+  {
+    var ret = '';
+    ret += this.name + '\n';
+    ret += this.race + '\n';
+    ret += 'kidnapped bois: ' + this.kidnapped + '\n';
+    return ret;
+  };
 };
 
 function playerMove(dir)

@@ -2,6 +2,7 @@ var Village = require('./world/village.js');
 var Tile = require('./world/tile.js');
 var Cell = require('./world/cell.js');
 var Player = require('./world/player.js');
+var Lair = require('./world/lair.js');
 
 module.exports = function World()
 {
@@ -13,6 +14,27 @@ module.exports = function World()
     var newPlayer = new Player(this.map[y][x], name, race);
     this.players[name] = newPlayer;
     console.log('New player added: ' + name);
+  };
+  this.addLair = function (cell, name, player)
+  {
+    if(cell.lair || cell.village)
+    {
+      return false;
+    }
+    cell.lair = new Lair(cell, name, player);     
+    return true;
+  };
+  this.kidnap = function (player, village, ammount)
+  {
+    var pop = village.villagers;
+    if(ammount > pop)
+    {
+      return false;
+    }
+
+    player.kidnapped += ammount;
+    village.villagers -= ammount;
+    return true;
   };
 };
 
