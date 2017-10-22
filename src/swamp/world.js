@@ -24,16 +24,28 @@ module.exports = function World()
     cell.lair = new Lair(cell, name, player);     
     return true;
   };
-  this.kidnap = function (player, village, ammount)
+  this.kidnap = function (player, cell, ammount)
   {
-    var pop = village.villagers;
+    var place;
+    if(cell.village)
+    {
+      place = cell.village;
+    }
+    else if(cell.lair)
+    {
+      place = cell.lair;
+    }
+
+    if(!place){ return false }
+
+    var pop = place.villagers;
     if(ammount > pop)
     {
       return false;
     }
 
     player.kidnapped += ammount;
-    village.villagers -= ammount;
+    place.villagers -= ammount;
     return true;
   };
 };

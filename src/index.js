@@ -124,11 +124,11 @@ bot.onText(/kidnap (.+)/, (msg, match) => {
   var player = world.players[msg.from.username];
   if(!player.lair){ warnNoLair(msg); return; }
 
-  if(!player.cell.village)
+  if(!player.cell.village && !player.cell.lair)
   {
     bot.sendMessage(
       msg.chat.id,
-      'There is no village here dude'      
+      'yO!!! gO 2 a VILLAg oR a LAIR!!! theRE isS noONe here!?'      
     );
     return;
   }
@@ -154,7 +154,7 @@ bot.onText(/kidnap (.+)/, (msg, match) => {
     return;
   }
 
-  if(world.kidnap(player, player.cell.village, ammount))
+  if(world.kidnap(player, player.cell, ammount))
   {
     bot.sendMessage(
       msg.chat.id,
@@ -165,7 +165,7 @@ bot.onText(/kidnap (.+)/, (msg, match) => {
   }
   bot.sendMessage(
     msg.chat.id,
-    'NOt enough bois in village!!'
+    'NOt enough bois in thiS PlAEC?!!'
   );
 });
 

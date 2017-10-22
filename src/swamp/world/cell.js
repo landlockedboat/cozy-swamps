@@ -70,11 +70,6 @@ function cellGetWalkable()
 
 function cellGetEmoji()
 {
-  if(this.lair)
-  {
-    return this.lair.emoji;
-  }
-
   if(this.players)
   {
     var keys = Object.keys(this.players);
@@ -87,6 +82,11 @@ function cellGetEmoji()
       }
       return keys.length;
     }
+  }
+
+  if(this.lair)
+  {
+    return this.lair.emoji;
   }
 
   if(this.tile)
