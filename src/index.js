@@ -8,7 +8,8 @@ var swamp = new Swamp();
 var world = swamp.world;
 
 // world.addPlayer(3, 3, 'wextia', 'calcium boi');
-// world.addPlayer(3, 3, 'bones', 'calcium boi');
+var bones = world.addPlayer(3, 3, 'bones', 'calcium boi');
+world.addLair(bones.cell, 'boning zone', bones);
 
 bot.on('message', (msg) => {
   console.log(
@@ -36,10 +37,26 @@ bot.onText(/\/ranking/, (msg) => {
   if(!playerExists(msg)){ return; }
 
   var ret = 'ranKING?:\n';
+
+  var sortable_players = [];
   for(var key in world.players)
   {
     var player = world.players[key];
-    ret += player.name;
+    sortable_players.push(player);
+  }
+
+  sortable_players.sort(
+    function(a, b)
+    {
+      if(!a.lair) return 1;
+      if(!b.lair) return -1;
+      return b.lair.villagers - a.lair.villagers;
+    });
+
+  for(var i = 0; i < sortable_players.length; ++i)
+  {
+    var player = sortable_players[i];
+    ret += (i + 1) + "st: " + player.name;
     if(player.lair)
     {
       ret += ' -> bois in lair: ' + player.lair.villagers;

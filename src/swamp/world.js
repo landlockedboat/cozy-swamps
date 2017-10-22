@@ -14,6 +14,7 @@ module.exports = function World()
     var newPlayer = new Player(this.map[y][x], name, race);
     this.players[name] = newPlayer;
     console.log('New player added: ' + name);
+    return newPlayer;
   };
   this.addLair = function (cell, name, player)
   {
@@ -22,6 +23,7 @@ module.exports = function World()
       return false;
     }
     cell.lair = new Lair(cell, name, player);     
+    console.log("New lair added: \"" + name + "\" of " + player.name);
     return true;
   };
   this.kidnap = function (player, cell, ammount)
