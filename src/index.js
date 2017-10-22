@@ -32,6 +32,31 @@ function playerExists(msg)
   return false;
 }
 
+bot.onText(/\/ranking/, (msg) => {
+  if(!playerExists(msg)){ return; }
+
+  var ret = 'ranKING?:\n';
+  for(var key in world.players)
+  {
+    var player = world.players[key];
+    ret += player.name;
+    if(player.lair)
+    {
+      ret += ' -> bois in lair: ' + player.lair.villagers;
+    }
+    else
+    {
+      ret += ' has no LaIR???? wat tGe FUCC';
+    }
+    ret += '\n';
+  }
+
+  bot.sendMessage(
+    msg.chat.id,
+    ret
+  );
+});
+
 bot.onText(/move (.+)/, (msg, match) => {
   if(!playerExists(msg)){ return; }
 
