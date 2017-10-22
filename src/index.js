@@ -1,9 +1,8 @@
-const TelegramSouth = require('node-telegram-bot-api');
-const Swamp = require('./swamp.js');
-const secrets = require('../secrets/secrets.js');
-const token = secrets.token; 
-const bot = new TelegramSouth(token, {polling: true});
+const TelegramBot = require('node-telegram-bot-api');
+const token = process.env.TOKEN;
+const bot = new TelegramBot(token, {polling: true});
 
+const Swamp = require('./swamp.js');
 var swamp = new Swamp();
 var world = swamp.world;
 
