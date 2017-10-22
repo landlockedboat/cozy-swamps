@@ -1,1 +1,1 @@
-prod: node src/index.js
+prod: npm run build && npm run start
