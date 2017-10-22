@@ -5,7 +5,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "build": "node tools/generate.overworld.js 10 10 > data/overworld.data",
+    "build": "mkdir data && node tools/generate.overworld.js 10 10 > data/overworld.data",
     "test": "./node_modules/.bin/eslint src/ tools/",
     "autofix": "./node_modules/.bin/eslint --fix src/ tools/",
     "start": "node src/index.js",
