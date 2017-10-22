@@ -13,7 +13,11 @@ module.exports = function Player(cell, name, race)
     var ret = '';
     ret += this.name + '\n';
     ret += this.race + '\n';
-    ret += 'kidnapped bois: ' + this.kidnapped + '\n';
+    ret += 'bois in bag: ' + this.kidnapped + '\n';
+    if(this.lair)
+    {
+      ret += 'bois in LAIR: ' + this.lair.villagers;
+    }
     return ret;
   };
 };

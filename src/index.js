@@ -41,7 +41,7 @@ bot.onText(/\/ranking/, (msg) => {
   var sortable_players = [];
   for(var key in world.players)
   {
-    var player = world.players[key];
+    let player = world.players[key];
     sortable_players.push(player);
   }
 
@@ -55,15 +55,15 @@ bot.onText(/\/ranking/, (msg) => {
 
   for(var i = 0; i < sortable_players.length; ++i)
   {
-    var player = sortable_players[i];
-    ret += (i + 1) + "st: " + player.name;
+    let player = sortable_players[i];
+    ret += (i + 1) + 'st: ' + player.name + ' (' + player.race + ')\n';
     if(player.lair)
     {
-      ret += ' -> bois in lair: ' + player.lair.villagers;
+      ret += '  has ' + player.lair.villagers + ' bois in lair';
     }
     else
     {
-      ret += ' has no LaIR???? wat tGe FUCC';
+      ret += '  has no LaIR???? wat tGe FUCC (0 BOIES?)';
     }
     ret += '\n';
   }
@@ -204,7 +204,7 @@ function warnLair(msg)
 {
   bot.sendMessage(
     msg.chat.id,
-    'You already have a lair DUDE',
+    'You alr3d have a lair DUDE!',
     {
       'reply_markup': {
         'keyboard': [
@@ -224,7 +224,8 @@ bot.onText(/build lair/, (msg) => {
   {
     bot.sendMessage(
       msg.chat.id,
-      'Your lair has been built...',
+      'u BUILT! a LAIR! it is YURS nowe.\n' + 
+      'gO KIDDNAP SOME PEPLO at THe villag!!!',
       {
         'reply_markup': {
           'keyboard': [
@@ -239,14 +240,9 @@ bot.onText(/build lair/, (msg) => {
   {
     bot.sendMessage(
       msg.chat.id,
-      'You cannot build a lair here!'
+      'YO!!!!!! NO BuiLL here!! GO ANOTHER PLACE'
     );
   }
-
-  bot.sendMessage(
-    msg.chat.id,
-    player.cell.getInfo(msg.from.username)
-  );
 });
 
 function playerLoggedIn(msg)

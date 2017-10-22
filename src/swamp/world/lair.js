@@ -10,9 +10,9 @@ module.exports = function Lair(cell, name, owner)
   {
     var ret = '';
     ret += name + '\n';
-    ret += 'Property of: ' + owner.name + '\n';
-    ret += 'Race: ' + this.race + '\n';
-    ret += 'Population: ' + this.villagers + '\n';
+    ret += 'this laIRE is OF: ' + owner.name + '\n';
+    ret += 'IT is A ' + this.race + ' LAIR\n';
+    ret += 'boies insIDe In it: ' + this.villagers + '\n';
     return ret;
   };
   this.emoji = generateEmoji(owner.race);

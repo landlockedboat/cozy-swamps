@@ -23,7 +23,7 @@ module.exports = function World()
       return false;
     }
     cell.lair = new Lair(cell, name, player);     
-    console.log("New lair added: \"" + name + "\" of " + player.name);
+    console.log('New lair added: "' + name + '" of ' + player.name);
     return true;
   };
   this.kidnap = function (player, cell, ammount)
@@ -38,7 +38,7 @@ module.exports = function World()
       place = cell.lair;
     }
 
-    if(!place){ return false }
+    if(!place){ return false; }
 
     var pop = place.villagers;
     if(ammount > pop)

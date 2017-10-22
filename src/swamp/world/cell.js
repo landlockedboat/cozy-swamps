@@ -22,27 +22,28 @@ module.exports = function Cell(y, x, cellNorth, cellWest)
 
 function cellGetInfo(playername)
 {
-  var ret = 'You look around...\n';
+  var ret = 'LOOKING uuu SEE:\n';
   if(this.tile)
   {
-    ret += 'Terrain: ' + this.tile.type + '\n';
+    ret += 'ThE GROUN iS: ' + this.tile.type + '\n';
   }
   if(this.village)
   {
-    ret += 'Village:\n';
-    ret += '  Population: ' + this.village.villagers + '\n';
+    ret += 'THERE IS A VILLAG heRE:\n';
+    ret += 'THE bIlLLAgE has: ' + this.village.villagers + ' BOIeIES\n';
   }
   if(this.lair)
   {
-    ret += this.lair.name + '\n';
-    ret += '  Population: ' + this.lair.villagers + '\n';
+    ret += 'H*CK!!! thER IS A lAIR HERE?!!';
+    ret += 'ITi isS cALLED: ' + this.lair.name + '\n';
+    ret += 'TheERE HARE SoME BOIESS: ' + this.lair.villagers + '\n';
   }
   if(this.players)
   {
     var keys = Object.keys(this.players);
     if(keys.length > 1)
     {
-      ret += 'Users:\n';
+      ret += 'WOW SOM SPOOKPALS ARE HERE:\n';
       for(var index = 0; index < keys.length; index++)
       {
         var key = keys[index];
@@ -51,10 +52,9 @@ function cellGetInfo(playername)
           continue;
         }
         var player = this.players[key];
-        ret += '  ' + player.name + '\n';
+        ret += '  ' + player.name + ' (' + player.race + ')' + '\n';
       }
     }
-    
   }
   return ret;
 }
