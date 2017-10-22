@@ -57,6 +57,10 @@ bot.onText(/\/ranking/, (msg) => {
   );
 });
 
+bot.onText(/bork/, (msg) => {
+  bot.sendAudio(msg.chat.id, 'sounds/bork.mp3');
+});
+
 bot.onText(/move (.+)/, (msg, match) => {
   if(!playerExists(msg)){ return; }
 
