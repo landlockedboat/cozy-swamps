@@ -7,8 +7,8 @@ const bot = new TelegramSouth(token, {polling: true});
 var swamp = new Swamp();
 var world = swamp.world;
 
-//world.addPlayer(3, 3, 'wextia', 'calcium boi');
-world.addPlayer(3, 3, 'bones', 'calcium boi');
+// world.addPlayer(3, 3, 'wextia', 'calcium boi');
+// world.addPlayer(3, 3, 'bones', 'calcium boi');
 
 bot.on('message', (msg) => {
   console.log(
@@ -55,6 +55,29 @@ bot.onText(/\/me/, (msg) => {
   );
 });
 
+bot.onText(/deposit/, (msg) => {
+  if(!playerExists(msg)){ return; }
+  var player = world.players[msg.from.username];
+  var lair = player.cell.lair;
+  if(!lair || lair.owner.name !== player.name)
+  {
+
+    bot.sendMessage(
+      msg.chat.id,
+      'U CAaNNOOT maKE a D E P O S I T here!!??\n' + 
+      'Go TO YOUR! lair!!!'
+    );
+    return;
+  }
+
+  lair.villagers += player.kidnapped;
+  player.kidnapped = 0;
+  bot.sendMessage(
+    msg.chat.id,
+    'U mADE! A dDEEPOSIT! go F E TCH MOre bois!!'
+  );
+});
+
 function warnNoLair(msg)
 {
   bot.sendMessage(
@@ -63,8 +86,9 @@ function warnNoLair(msg)
     {
       'reply_markup': {
         'keyboard': [
-          ['move north', 'move east'],
-          ['move south', 'move west'],
+          ['move north'],
+          ['move west', 'move east'],
+          ['move south'],
           ['build lair']
         ]}
     });
@@ -95,11 +119,22 @@ bot.onText(/kidnap (.+)/, (msg, match) => {
     return;
   }
 
+  if(player.kidnapped + ammount > player.capacity)
+  {
+    bot.sendMessage(
+      msg.chat.id,
+      'Uu caNNOT kndinap any more BOieS!\n' +
+      'max bois you CaN HANDLE: ' + player.capacity + '\n'
+    );
+    return;
+  }
+
   if(world.kidnap(player, player.cell.village, ammount))
   {
     bot.sendMessage(
       msg.chat.id,
-      'U kidnapped ' + ammount + ' bois'
+      'U kidnapped ' + ammount + ' bois!\n' +
+      'max bois you CaN HANDLE: ' + player.capacity + '\n'
     );
     return;
   }
@@ -127,9 +162,10 @@ function warnLair(msg)
     {
       'reply_markup': {
         'keyboard': [
-          ['move north', 'move east'],
-          ['move south', 'move west'],
-          ['kidnap 10']
+          ['move north'],
+          ['move west', 'move east'],
+          ['move south'],
+          ['kidnap 10', 'deposit']
         ]}
     });
 }
@@ -146,9 +182,10 @@ bot.onText(/build lair/, (msg) => {
       {
         'reply_markup': {
           'keyboard': [
-            ['move north', 'move east'],
-            ['move south', 'move west'],
-            ['kidnap 10']
+            ['move north'],
+            ['move west', 'move east'],
+            ['move south'],
+            ['kidnap 10', 'deposit']
           ]}
       });
   }
@@ -181,14 +218,17 @@ function playerLoggedIn(msg)
 
 function greet(msg)
 {
+  var player = world.players[msg.from.username];
   bot.sendMessage(
     msg.chat.id,
-    'welCUM tO SWAMPYY LANDS',
+    'welCUM tO SWAMPYY LANDS\n' +
+    world.printSurroundings(player.cell.y, player.cell.x, 5),
     {
       'reply_markup': {
         'keyboard': [
-          ['move north', 'move east'],
-          ['move south', 'move west'],
+          ['move north'],
+          ['move west', 'move east'],
+          ['move south'],
           ['build lair']
         ]}
     });
@@ -229,8 +269,9 @@ bot.onText(/\/start/, (msg) => {
       {
         'reply_markup': {
           'keyboard': [
-            ['move north', 'move east'],
-            ['move south', 'move west'],
+            ['move north'],
+            ['move west', 'move east'],
+            ['move south'],
             ['build lair']
           ]}
       });

@@ -7,6 +7,7 @@ module.exports = function Player(cell, name, race)
   this.emoji = generateEmoji(race);
   this.move = playerMove;
   this.kidnapped = 0;
+  this.capacity = 30;
   this.getInfo = function ()
   {
     var ret = '';

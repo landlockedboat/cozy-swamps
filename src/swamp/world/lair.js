@@ -35,7 +35,7 @@ function generateEmoji(race)
   }
   else if(race === 'calcium boi')
   {
-    return '⚰';
+    return '🎺';
   }
   else
   {

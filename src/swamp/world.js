@@ -100,7 +100,7 @@ function worldPrintSurroundings (y, x, radius)
     {
       if(i < 0 || i >= this.map.length || j < 0 || j >= this.map[0].length)
       {
-        ret += '🌫';
+        ret += '☁️';
         continue;
       }
       var cell = this.map[i][j];
