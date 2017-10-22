@@ -8,8 +8,8 @@
     "build": "node tools/generate.overworld.js 10 10 > data/overworld.data",
     "test": "./node_modules/.bin/eslint src/ tools/",
     "autofix": "./node_modules/.bin/eslint --fix src/ tools/",
-    "start": "npm run test && node src/index.js",
-    "debug": "node src/index.js"
+    "start": "node src/index.js",
+    "debug": "npm run test && node src/index.js"
   },
   "author": "",
   "license": "ISC",
