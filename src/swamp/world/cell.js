@@ -80,7 +80,19 @@ function cellGetEmoji()
         var key = keys[0];
         return this.players[key].emoji;
       }
-      return keys.length;
+      if(keys.length == 2)
+      {
+	return '2⃣';
+      }
+      if(keys.length == 3)
+      {
+	return '3⃣';
+      }
+      if(keys.length == 4)
+      {
+	return '4⃣';
+      }
+      return '🔢';
     }
   }
 

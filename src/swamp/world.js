@@ -16,6 +16,20 @@ module.exports = function World()
     console.log('New player added: ' + name);
     return newPlayer;
   };
+
+  this.addPlayerInRandomPos = function (name, race)
+  {
+    var limY = this.map.length - 1;
+    var limX = this.map[0].length - 1;
+
+    var r = Math.random();
+
+    var posY = Math.floor(r * limY) + 1;
+    var posX = Math.floor(r * limX) + 1;
+
+    return this.addPlayer(posY, posX, name, race);
+  };
+
   this.addLair = function (cell, name, player)
   {
     if(cell.lair || cell.village)

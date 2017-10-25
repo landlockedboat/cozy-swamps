@@ -29,9 +29,15 @@ for(var i = 0; i < height; i++)
 
     if(chance >= rand)
     {
-      // var tileNumber = Math.floor(Math.random() * ntypes) + 2;
-      // map[i][j] = tileNumber;
       map[i][j] = 2;
+      continue;
+    }
+
+    rand = Math.random();
+
+    if(chance >= rand)
+    {
+      map[i][j] = 1;
       continue;
     }
     map[i][j] = 0;

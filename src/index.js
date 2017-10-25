@@ -6,16 +6,16 @@ const Swamp = require('./swamp.js');
 var swamp = new Swamp();
 var world = swamp.world;
 
-// world.addPlayer(3, 3, 'wextia', 'calcium boi');
-var bones = world.addPlayer(3, 3, 'bones', 'calcium boi');
-world.addLair(bones.cell, 'boning zone', bones);
-
 bot.on('message', (msg) => {
   console.log(
     msg.from.id +
     ' (' + msg.from.username + '): ' +
     msg.text);
 });
+
+world.addPlayer(3,3,'wextia', 'calcium boi');
+world.addPlayer(3,3,'noar', 'calcium boi');
+world.addPlayer(3,3,'baoi', 'calcium boi');
 
 function playerExists(msg)
 {
@@ -277,25 +277,25 @@ function greet(msg)
 
 bot.onText(/👻 h\*cky spooker/, (msg) => {
   if(playerLoggedIn(msg)) { return; }
-  world.addPlayer(3,3, msg.from.username, 'h*cky spooker');
+  world.addPlayerInRandomPos(msg.from.username, 'h*cky spooker');
   greet(msg);
 });
 
 bot.onText(/🤡 laugh buddy/, (msg) => {
   if(playerLoggedIn(msg)) { return; }
-  world.addPlayer(3,3, msg.from.username, 'laugh buddy');
+  world.addPlayerInRandomPos(msg.from.username, 'laugh buddy');
   greet(msg);
 });
 
 bot.onText(/🦑 inky pupper/, (msg) => {
   if(playerLoggedIn(msg)) { return; }
-  world.addPlayer(3,3, msg.from.username, 'inky pupper');
+  world.addPlayerInRandomPos(msg.from.username, 'inky pupper');
   greet(msg);
 });
 
 bot.onText(/💀 calcium boi/, (msg) => {
   if(playerLoggedIn(msg)) { return; }
-  world.addPlayer(3,3, msg.from.username, 'calcium boi');
+  world.addPlayerInRandomPos(msg.from.username, 'calcium boi');
   greet(msg);
 });
 
